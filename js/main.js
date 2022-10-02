@@ -1,5 +1,19 @@
-const robotron = document.getElementById('robotron')
+const subtrair = document.getElementById('subtrair')
+const somar = document.getElementById('somar')
+const braco = document.getElementById('braco')
 
-robotron.addEventListener('click', event => {
-  console.log(event)
+const controle = document.querySelectorAll('.controle-ajuste')
+
+controle.forEach(elemento => {
+  elemento.addEventListener('click', event => {
+    manipulaDados(braco, event.target.textContent)
+  })
 })
+
+function manipulaDados(peça, operacao) {
+  if (operacao === '-') {
+    peça.value--
+  } else {
+    peça.value++
+  }
+}
