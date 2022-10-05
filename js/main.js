@@ -1,8 +1,46 @@
 const controle = document.querySelectorAll('[data-controle]')
+const estatisticas = document.querySelectorAll('[data-estatistica]')
+const pecas = {
+  bracos: {
+    forca: 29,
+    poder: 35,
+    energia: -21,
+    velocidade: -5
+  },
+
+  blindagem: {
+    forca: 41,
+    poder: 20,
+    energia: 0,
+    velocidade: -20
+  },
+  nucleos: {
+    forca: 0,
+    poder: 7,
+    energia: 48,
+    velocidade: -24
+  },
+  pernas: {
+    forca: 27,
+    poder: 21,
+    energia: -32,
+    velocidade: 42
+  },
+  foguetes: {
+    forca: 0,
+    poder: 28,
+    energia: 0,
+    velocidade: -2
+  }
+}
 
 controle.forEach(elemento => {
   elemento.addEventListener('click', event => {
     manipulaDados(event.target.parentNode, event.target.dataset.controle)
+    atualizaEstatisticas(
+      event.target.dataset.peca,
+      event.target.dataset.controle
+    )
   })
 })
 
@@ -13,4 +51,18 @@ function manipulaDados(controle, operacao) {
   } else {
     peca.value++
   }
+}
+
+function atualizaEstatisticas(peca, controle) {
+  estatisticas.forEach(elemento => {
+    if (controle === '+') {
+      elemento.textContent =
+        parseInt(elemento.textContent) +
+        pecas[peca][elemento.dataset.estatistica]
+    } else {
+      elemento.textContent =
+        parseInt(elemento.textContent) -
+        pecas[peca][elemento.dataset.estatistica]
+    }
+  })
 }
