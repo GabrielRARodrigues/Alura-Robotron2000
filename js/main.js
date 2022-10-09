@@ -1,5 +1,6 @@
 const controle = document.querySelectorAll('[data-controle]')
 const estatisticas = document.querySelectorAll('[data-estatistica]')
+const corRobo = document.querySelector('[data-cor]')
 const pecas = {
   bracos: {
     forca: 29,
@@ -69,3 +70,13 @@ function atualizaEstatisticas(peca, controle, componente) {
     }
   })
 }
+
+let clicks = 0
+
+corRobo.addEventListener('click', event => {
+  clicks++
+  if (clicks >= 6) {
+    clicks = 0
+  }
+  event.target.setAttribute('src', `img/robotron-${clicks}.png`)
+})
